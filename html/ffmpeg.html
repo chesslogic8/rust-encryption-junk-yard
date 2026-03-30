@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join 1.mp4 → 4.mp4 with FFmpeg (Fedora)</title>
+    <style>
+        body { font-family: Segoe UI, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #f7f7f7; color: #333; line-height: 1.6; }
+        pre { background: #222; color: #0f0; padding: 15px; border-radius: 8px; overflow-x: auto; }
+        code { background: #eee; padding: 2px 6px; border-radius: 4px; }
+        h1, h2 { color: #0066cc; }
+        .box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+<h1>How to Join 1.mp4, 2.mp4, 3.mp4, 4.mp4 into One File with FFmpeg</h1>
+
+<div class="box">
+    <h2>1. Open Terminal and go to your folder</h2>
+    <pre>cd /path/to/your/videos</pre>
+    (example: <code>cd ~/Videos</code> or <code>cd ~/Desktop</code>)
+</div>
+
+<div class="box">
+    <h2>2. Create the list file (exact order)</h2>
+    <pre>printf "file '1.mp4'\nfile '2.mp4'\nfile '3.mp4'\nfile '4.mp4'\n" > list.txt</pre>
+    This creates <code>list.txt</code> containing:
+    <pre>file '1.mp4'
+file '2.mp4'
+file '3.mp4'
+file '4.mp4'</pre>
+</div>
+
+<div class="box">
+    <h2>3. Join the files — lossless & instant (recommended)</h2>
+    <pre>ffmpeg -f concat -safe 0 -i list.txt -c copy merged.mp4</pre>
+    → Creates <code>merged.mp4</code> in the same folder (no quality loss, takes seconds)
+</div>
+
+<div class="box">
+    <h2>If you get an error about mismatched codecs (rare)</h2>
+    <pre>ffmpeg -f concat -safe 0 -i list.txt -c:v libx264 -preset veryfast -crf 18 -c:a aac merged.mp4</pre>
+    This re-encodes quickly with almost zero visible quality loss.
+</div>
+
+<div class="box">
+    <h2>Done!</h2>
+    Your final file is <code>merged.mp4</code> (or whatever name you chose).  
+    You can delete <code>list.txt</code> afterward if you want.
+</div>
+
+<footer style="text-align:center; margin-top:50px; color:#777;">
+    Works perfectly on Fedora Workstation 43 (and any recent Linux).  
+    FFmpeg is pre-installed on Fedora.
+</footer>
+
+</body>
+</html>

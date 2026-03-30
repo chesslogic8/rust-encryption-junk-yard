@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtualBox + Windows 11 on Pop!_OS – Complete Setup Guide (2026)</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            color: #1a3c5e;
+        }
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f4f8;
+        }
+        code, pre {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
+        pre {
+            padding: 15px;
+            overflow-x: auto;
+        }
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        .tip {
+            background: #e8f4fd;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>VirtualBox + Windows 11 on Pop!_OS – Complete Setup Guide (2026)</h1>
+
+<p>This guide covers installing Windows 11 in VirtualBox on Pop!_OS, optimizing for performance (especially for light gaming like Clash of Clans via emulator), debloating, and installing Guest Additions for smooth experience. Your hardware (14th Gen i9, RTX 4060, 64 GB RAM) handles this easily.</p>
+
+<h2>1. Initial VM Creation & Windows 11 Installation</h2>
+<ol>
+    <li>Download official Windows 11 ISO from Microsoft (search "Download Windows 11 Disk Image (ISO)"). Choose Pro edition to match your host license if desired.</li>
+    <li>In VirtualBox → Machine → New:
+        <ul>
+            <li>Name: e.g., "Win11-Gaming"</li>
+            <li>ISO Image: Select your Windows 11 ISO</li>
+            <li>Type: Microsoft Windows / Version: Windows 11 (64-bit)</li>
+        </ul>
+    </li>
+    <li>VirtualBox auto-detects Windows 11 needs → it enables:
+        <ul>
+            <li>EFI (UEFI) boot</li>
+            <li>TPM 2.0 (virtual)</li>
+            <li>Secure Boot</li>
+        </ul>
+        → Keep these enabled (required for clean Win11 install).
+    </li>
+    <li>Hardware allocation (adjust based on your 64 GB RAM / i9):
+        <ul>
+            <li>Base Memory (RAM): 8–16 GB</li>
+            <li>Processors: 4–8 cores (enable PAE/NX + Nested VT-x/AMD-V if shown)</li>
+            <li>Hard disk: 80–128 GB dynamic VDI</li>
+        </ul>
+    </li>
+    <li>Finish → Start VM → Install Windows normally.</li>
+    <li>During setup: "I don't have a product key" → continue (activates later if you input your OEM key, but optional for hobby use).</li>
+</ol>
+
+<div class="tip">
+    <strong>Tip:</strong> If install complains about hardware requirements despite TPM/Secure Boot → rare in recent VirtualBox versions, but you can bypass via registry edits (search "Windows 11 bypass TPM VirtualBox" if needed).
+</div>
+
+<h2>2. Post-Install Optimizations for Performance</h2>
+
+<h3>A. Recommended VM Settings (power off VM first)</h3>
+<table>
+    <tr><th>Setting Category</th><th>Recommended Value</th><th>Reason</th></tr>
+    <tr><td>System → Motherboard → Base Memory</td><td>8–16 GB</td><td>Smooth for emulator + multitasking</td></tr>
+    <tr><td>System → Processor → Processors</td><td>4–8 cores</td><td>Balance host/guest load; enable PAE/NX</td></tr>
+    <tr><td>System → Acceleration</td><td>Enable VT-x/AMD-V + Nested Paging</td><td>Hardware virtualization (must for good perf)</td></tr>
+    <tr><td>Display → Screen → Video Memory</td><td>128–256 MB</td><td>Needed for good graphics in emulator</td></tr>
+    <tr><td>Display → Screen → Graphics Controller</td><td>VMSVGA or VBoxSVGA</td><td>Better compatibility with Win11</td></tr>
+    <tr><td>Display → Screen → Enable 3D Acceleration</td><td>Checked</td><td>Critical for Android emulators / games</td></tr>
+    <tr><td>Storage</td><td>Ensure SATA/IDE controller has empty optical drive</td><td>For Guest Additions ISO</td></tr>
+</table>
+
+<p>After changes → Start VM.</p>
+
+<h3>B. Inside Windows Guest</h3>
+<ol>
+    <li>Set Power Plan: Search "Power Plan" → Choose "High Performance".</li>
+    <li>Update Windows (Settings → Windows Update) – do this before heavy tweaks.</li>
+</ol>
+
+<h2>3. Installing VirtualBox Guest Additions (for auto-resize, better graphics, clipboard, etc.)</h2>
+<ol>
+    <li>With VM running and Windows desktop loaded:
+        <ul>
+            <li>Go to VirtualBox menu (top of host window): <strong>Devices → Insert Guest Additions CD image</strong></li>
+            <li>Nothing may "pop up" on host—that's normal. It mounts the ISO silently as a virtual CD.</li>
+        </ul>
+    </li>
+    <li>Inside Windows 11 guest:
+        <ul>
+            <li>Open File Explorer (Win + E or This PC).</li>
+            <li>Look under "This PC" for new CD/DVD drive (usually D: or E: — labeled "VirtualBox_GAs_..." or similar).</li>
+            <li>Double-click the drive to open it.</li>
+        </ul>
+    </li>
+    <li>In the CD contents folder:
+        <ul>
+            <li>Find and double-click <strong>VBoxWindowsAdditions.exe</strong> (or <strong>VBoxWindowsAdditions-amd64.exe</strong> for 64-bit — prefer this one).</li>
+            <li>If it doesn't start: Right-click → Run as administrator.</li>
+            <li>Follow installer wizard: Next → Install (allow network/driver changes if prompted).</li>
+            <li>Reboot VM when finished.</li>
+        </ul>
+    </li>
+    <li>After reboot:
+        <ul>
+            <li>Screen auto-resizes when dragging VM window.</li>
+            <li>Mouse integrates seamlessly (no capture needed).</li>
+            <li>Shared clipboard / drag-drop / shared folders work (enable in Devices menu if desired).</li>
+            <li>Graphics feel much smoother (great for BlueStacks / Clash of Clans).</li>
+        </ul>
+    </li>
+</ol>
+
+<div class="tip">
+    <strong>If CD drive doesn't appear:</strong> VM Settings → Storage → Add empty optical drive if missing → Devices → Optical Drives → Choose disk file → browse to <code>/usr/share/virtualbox/VBoxGuestAdditions.iso</code> on Pop!_OS host.
+</div>
+
+<h2>4. Debloating Windows 11 (reduce CPU/RAM usage – great for VM)</h2>
+<ol>
+    <li>Download <strong>O&O ShutUp10++</strong> (free): <a href="https://www.oo-software.com/en/shutup10">oo-software.com/en/shutup10</a></li>
+    <li>Run it → Use "Recommended" preset (disables telemetry, OneDrive auto-start, Cortana, ads, etc.).</li>
+    <li>Apply → Reboot. Expect lower idle RAM/CPU (e.g., 1–2 GB instead of 3–4 GB).</li>
+    <li>Optional extra: Run Win11Debloat script from GitHub (Raphire/Win11Debloat) for deeper cleanup.</li>
+</ol>
+
+<h2>5. Setting Up Clash of Clans (via Android Emulator)</h2>
+<ol>
+    <li>Recommended: <strong>BlueStacks</strong> (best for Clash – macros, multi-instance support).
+        <ul>
+            <li>Download: bluestacks.com</li>
+            <li>Install in VM → Sign in Google → Search/install Clash of Clans.</li>
+            <li>In BlueStacks settings: Enable high FPS/graphics.</li>
+        </ul>
+    </li>
+    <li>Alternatives: LDPlayer (lighter) or MuMu Player.</li>
+    <li>With Guest Additions + 3D accel + debloating → runs smoothly for your few minutes/day playstyle.</li>
+</ol>
+
+<h2>Final Tips</h2>
+<ul>
+    <li>Take snapshots often (Machine → Take Snapshot) before big changes.</li>
+    <li>If performance still feels off → try VMware Workstation Pro (also free now) as alternative hypervisor.</li>
+    <li>Enjoy tinkering on Pop!_OS / Cosmic while keeping Windows handy!</li>
+</ul>
+
+<p>Updated: February 2026 | Based on VirtualBox 7.x behavior.</p>
+
+</body>
+</html>

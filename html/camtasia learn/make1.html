@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Tutorial: Making Chess Videos with Camtasia, SnagIt, and Audiate</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+    h1, h2 { color: #333; }
+    ol { margin-bottom: 20px; }
+    li { margin-bottom: 10px; }
+    .tip { background: #f0f0f0; padding: 10px; border-left: 4px solid #007bff; }
+    code { background: #eee; padding: 2px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Simple Tutorial: Creating Chess Videos for YouTube Using Camtasia, SnagIt, and Audiate</h1>
+  <p>This guide walks you through a beginner-friendly workflow to record chess games or tutorials (e.g., openings like King's Indian), add arrows/highlights, AI-generated audio narration, and export for YouTube. We'll use your bundle: SnagIt for quick captures, Camtasia for recording/editing, and Audiate for AI voiceovers. Assume you have a PGN file ready from Hiarcs Chess Explorer Pro, chess.com, or lichess.org.</p>
+  
+  <p><strong>Key Assumptions:</strong> You're on Windows/Mac with the TechSmith bundle installed. Videos will be screen recordings of your chess software/site, with overlays like arrows and voice added during or after. Start simple—aim for a 5-10 minute video reviewing a game or explaining an opening.</p>
+  
+  <h2>Step 1: Prepare Your Chess Content</h2>
+  <ol>
+    <li>Open your PGN in Hiarcs Chess Explorer Pro (File > Open PGN) or upload to chess.com/lichess.org analysis board.</li>
+    <li>Practice stepping through moves: Use arrow keys or buttons to advance one move at a time. Note key positions where you'll add explanations, arrows, or effects.</li>
+    <li>Script your narration: Write a simple text outline (e.g., "White opens with e4. Black responds with the King's Indian setup: d6, Nf6..."). Save as a .txt file for Audiate later.</li>
+    <li><span class="tip">Tip: If using lichess.org, their board has built-in arrows (hold right-click and drag)—record those live for easy highlights.</span></li>
+  </ol>
+  
+  <h2>Step 2: Record the Screen (Use SnagIt for Quick Tests, Camtasia for Full Videos)</h2>
+  <p>Two options: Live additions (arrows/audio during recording) or post-editing. Start with live for simplicity.</p>
+  <ol>
+    <li><strong>Option A: Quick & Simple with SnagIt (Great for Short Clips or Tests)</strong>
+      <ul>
+        <li>Open SnagIt > Click "Video" tab > Set capture area to your chess window (or full screen).</li>
+        <li>Enable "System Audio" (to capture any MP3 you play) and "Microphone" if narrating live. For AI audio: Pre-generate MP3 in Audiate (see Step 3) and play it via media player during recording—SnagIt will pick it up.</li>
+        <li>Start recording (hotkey: Print Screen or custom). Step through moves in Hiarcs/chess site.</li>
+        <li>Add live arrows: Pause if needed (SnagIt has a pause button), use SnagIt's drawing tools during capture (click the pencil icon in the capture toolbar to draw arrows/highlights on screen).</li>
+        <li>Stop recording > Trim clips in SnagIt Editor > Add basic text/arrows post-capture if missed live.</li>
+        <li>Export as MP4. If too basic, import to Camtasia for more polish.</li>
+      </ul>
+    </li>
+    <li><strong>Option B: Full-Featured with Camtasia (For Polished Tutorials)</strong>
+      <ul>
+        <li>Open Camtasia > New Recording > Select region (your chess app/window) > Enable System Audio and Webcam if wanted (for face cam).</li>
+        <li>For live audio: Play pre-made MP3 from Audiate (or speak yourself) while recording—system audio captures it.</li>
+        <li>Start recording > Play through the game moves slowly.</li>
+        <li>Add live arrows: Use Camtasia's "Screen Draw" tool (enable in recorder settings—draw arrows/circles directly on screen during recording; they appear as annotations).</li>
+        <li>Stop > Video auto-opens in Editor for Step 4.</li>
+      </ul>
+    </li>
+    <li><span class="tip">Tip: For MP3 playback method: Generate audio clips in Audiate (short segments per position), queue them in a player like VLC. Time your move advances to sync with audio. No mic needed!</span></li>
+  </ol>
+  
+  <h2>Step 3: Add AI Audio with Audiate</h2>
+  <p>Audiate shines for AI voiceovers—use it pre-recording (for MP3s to play live) or post (sync to video).</p>
+  <ol>
+    <li>Open Audiate > New Project > Type/paste your script text (e.g., "In this position, Black attacks with f5...").</li>
+    <li>Generate AI voice: Select text > Click "Generate Voice" (choose voice style/accent/speed from 200+ options).</li>
+    <li>Edit: Highlight filler words or mistakes in transcript > Delete to auto-edit audio. Add pauses/emphasis.</li>
+    <li>Export: As MP3 (for live playback during recording) or send directly to Camtasia (File > Send to Camtasia) for syncing.</li>
+    <li>If post-recording: In Camtasia Editor, import Audiate file—it adds audio track with editable transcript.</li>
+    <li><span class="tip">Tip: For chess tutorials, break script into short segments (e.g., one per move). Use AI prompts in Audiate to generate scripts: Click AI button > Prompt like "Write a script explaining King's Indian opening basics."</span></li>
+  </ol>
+  
+  <h2>Step 4: Edit and Add Effects in Camtasia</h2>
+  <ol>
+    <li>Open your recording in Camtasia Editor (auto if recorded there; else File > Import).</li>
+    <li>Timeline basics: Drag audio from Audiate onto a new track. Sync by dragging clips (zoom in for precision).</li>
+    <li>Add arrows/highlights: If not done live, go to Annotations tab > Drag arrow/shape to timeline > Position over chess board > Customize color/size.</li>
+    <li>Effects: For captivating flair (like nuke explosions), use Behaviors or Animations tab—e.g., add zoom/pan on key moves, or import GIFs (File > Import media) like explosion overlays (place on timeline, resize to fit).</li>
+    <li>Trim & Polish: Cut mistakes (split tool), add transitions, text captions, or music (Library tab—royalty-free options).</li>
+    <li><span class="tip">Tip: For arrows on specific positions, pause video at that frame (spacebar), add annotation, set duration to match explanation.</span></li>
+  </ol>
+  
+  <h2>Step 5: Export and Upload to YouTube</h2>
+  <ol>
+    <li>In Camtasia: Share > Export > MP4 (YouTube preset: 1080p, H.264).</li>
+    <li>Check for issues: Play back—ensure audio syncs, arrows visible, no background music triggering copyright (use royalty-free from Camtasia library).</li>
+    <li>Upload to YouTube: Log in > Create > Upload Video > Add title like "King's Indian Opening Tutorial" > Description with timestamps > Publish.</li>
+    <li><span class="tip">Tip: If YouTube flags audio, mute original and overlay only AI voice. Test with a short 1-min video first!</span></li>
+  </ol>
+  
+  <h2>Common Tips & Troubleshooting</h2>
+  <ul>
+    <li><strong>Sync Issues:</strong> Record silent video first, then add AI audio in editor—easier control.</li>
+    <li><strong>Arrows:</strong> Live drawing saves time; post-editing for precision.</li>
+    <li><strong>AI Audio Quality:</strong> Experiment with voices in Audiate—preview before exporting.</li>
+    <li><strong>Learning Curve:</strong> Watch TechSmith's free YouTube tutorials (search "Camtasia chess tutorial"). Practice on a sample game.</li>
+    <li><strong>Alternatives:</strong> If stuck, try lichess.org's broadcast feature for built-in tools, or free tools like OBS Studio for recording + arrows.</li>
+  </ul>
+  
+  <p>Start small—record one opening explanation. If you hit snags (e.g., PGN loading in other tools), provide details for more help. Good luck with your chess channel!</p>
+</body>
+</html>

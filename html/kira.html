@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP4 Viewer Full Page Responsive</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .video-container {
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            object-fit: cover;
+        }
+        #instruction-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="instruction-overlay">
+        <p>Click anywhere to enable sound</p>
+    </div>
+    <div class="video-container" id="videoContainer"></div>
+    <script>
+        const videoSrc = 'yourvideo.mp4'; // Replace with your MP4 path or URL
+
+        function createVideo() {
+            const video = document.createElement('video');
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true; // Start muted to allow autoplay
+            video.playsinline = true; // For mobile compatibility
+            const source = document.createElement('source');
+            source.src = videoSrc;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            video.innerHTML += 'Your browser does not support the video tag.';
+            video.play().catch(error => console.error('Video playback failed:', error));
+            return video;
+        }
+
+        function fillVideos() {
+            const container = document.getElementById('videoContainer');
+            container.innerHTML = ''; // Clear existing videos
+
+            const tileSize = window.innerWidth <= 600 ? 150 : 300; // Adjust min tile size for smaller screens
+            const numCols = Math.ceil(window.innerWidth / tileSize);
+            const numRows = Math.ceil(window.innerHeight / tileSize);
+
+            // Set grid styles to fill exactly
+            container.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
+            container.style.gridTemplateRows = `repeat(${numRows}, 1fr)`;
+
+            const totalVideos = numCols * numRows;
+            for (let i = 0; i < totalVideos; i++) {
+                container.appendChild(createVideo());
+            }
+        }
+
+        // Initial fill
+        fillVideos();
+
+        // Refill on resize for responsiveness
+        window.addEventListener('resize', fillVideos);
+
+        // Unmute all videos on first user interaction (e.g., click) to enable sound
+        let interacted = false;
+        const overlay = document.getElementById('instruction-overlay');
+        overlay.style.display = 'block'; // Show instruction initially
+
+        window.addEventListener('click', () => {
+            if (!interacted) {
+                interacted = true;
+                const videos = document.querySelectorAll('video');
+                videos.forEach(v => {
+                    v.muted = false;
+                });
+                overlay.style.display = 'none'; // Hide instruction after click
+            }
+        });
+    </script>
+</body>
+</html>

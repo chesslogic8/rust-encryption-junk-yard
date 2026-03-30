@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linux Chess YouTube Recording Guide (OBS + Fedora/Pop!_OS)</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 900px; margin: 2em auto; line-height: 1.6; background: #fafafa; color: #222; }
+        h1, h2, h3 { color: #0066cc; }
+        pre { background: #f0f0f0; padding: 1em; border-radius: 8px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5em 0; }
+        th, td { border: 1px solid #ccc; padding: 0.8em; text-align: left; }
+        th { background: #0066cc; color: white; }
+        .tip { background: #e6f3ff; padding: 1em; border-left: 5px solid #0066cc; margin: 1em 0; }
+    </style>
+</head>
+<body>
+
+<h1>Linux Chess YouTube Recording Guide</h1>
+<p>Perfect 1080p/4K chess videos with audio — no more GNOME recorder or Clipchamp nonsense.</p>
+
+<h2>1. Install OBS Studio (Flatpak — works on Fedora & Pop!_OS)</h2>
+<pre>
+flatpak install flathub com.obsproject.Studio
+flatpak run com.obsproject.Studio   # first launch
+</pre>
+<p>Pin it to your dock/favorites afterward.</p>
+
+<h2>2. Quick 5-Minute Chess Scene Setup</h2>
+<ol>
+    <li>Delete the default scene → create new scene called <strong>Chess Game</strong></li>
+    <li>Add these sources (exact order doesn’t matter, but drag to crop/position):</li>
+</ol>
+
+<table>
+    <tr><th>Source Type</th><th>What to Select / Settings</th><th>Why</th></tr>
+    <tr><td><strong>Window Capture (PipeWire)</strong></td><td>
+        + → Window Capture → Method: <strong>PipeWire</strong><br>
+        Window: your Chrome/Firefox with Lichess or Chess.com<br>
+        <strong>Crop</strong>: Alt+drag edges to show only the board
+    </td><td>Captures just the chess window, follows resizing</td></tr>
+    <tr><td><strong>Audio Output Capture (PipeWire)</strong></td><td>
+        + → Audio Output Capture → Device: Default
+    </td><td>Gets move sounds & any background music</td></tr>
+    <tr><td><strong>Audio Input Capture</strong></td><td>
+        + → Audio Input Capture → Device: Your microphone<br>
+        (lower volume to ~−10 dB if it peaks red)
+    </td><td>Your commentary</td></tr>
+    <tr><td><strong>(Optional) Text</strong></td><td>
+        + → Text (GDI+) or Text (Pango) → write title or opponent name
+    </td><td>Game info overlay</td></tr>
+    <tr><td><strong>(Optional) Video Capture Device</strong></td><td>
+        Webcam → resize to corner for facecam
+    </td><td>Personal touch</td></tr>
+</table>
+
+<h2>3. Best Recording Settings (NVIDIA 4060 NVENC)</h2>
+<p>Settings → Output → Mode: <strong>Advanced</strong></p>
+<ul>
+    <li>Recording Format: <strong>mp4</strong></li>
+    <li>Encoder: <strong>NVIDIA NVENC H.264</strong> (or AV1 if you want future-proof)</li>
+    <li>Rate Control: <strong>CQP</strong></li>
+    <li>CQ Level: <strong>15–20</strong> (lower = better quality, bigger file)</li>
+    <li>Resolution: <strong>1920×1080</strong> or your monitor res</li>
+    <li>FPS: <strong>60</strong> or 30</li>
+    <li>Recording Path: <code>~/Videos/Chess</code></li>
+</ul>
+
+<h2>4. Hotkeys (optional but nice)</h2>
+<p>Settings → Hotkeys</p>
+<ul>
+    <li>Start Recording → <strong>F9</strong></li>
+    <li>Stop Recording → <strong>F10</strong></li>
+</ul>
+
+<h2>5. Workflow</h2>
+<ol>
+    <li>Open Lichess/Chess.com in Chrome (Proton VPN on — no problem)</li>
+    <li>Launch OBS → make sure the window capture locked on the board</li>
+    <li>Hit F9 → play & talk</li>
+    <li>F10 when done → file appears in <code>~/Videos/Chess</code></li>
+    <li>Quick trim (optional): <code>flatpak install net.losslesscut.LosslessCut</code> → open file → cut intro/outro → Save as (no re-encode)</li>
+    <li>Drag final mp4 straight to YouTube upload page → 1080p/4K premium instantly</li>
+</ol>
+
+<div class="tip">
+    <strong>Proton VPN + OBS = zero Microsoft harassment.</strong><br>
+    No accounts, no phone numbers, no “there’s a problem with your account” ever again.
+</div>
+
+<h2>Extra Tools (all Flatpaks)</h2>
+<ul>
+    <li>LosslessCut – instant lossless trimming: <code>flatpak install net.losslesscut.LosslessCut</code></li>
+    <li>HandBrake – if you ever need smaller files: <code>flatpak install fr.handbrake.ghb</code></li>
+</ul>
+
+<p>That’s it. Save this page, bookmark it, or print it — you now have a permanent, 100% working chess recording setup that runs circles around Windows Clipchamp.</p>
+
+<p>♟ Good luck with the channel!</p>
+
+</body>
+</html>

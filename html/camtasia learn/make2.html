@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Tutorial: Making Chess Videos with Lichess, Arrows, and Audiate Integration</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+    h1, h2 { color: #333; }
+    ol { margin-bottom: 20px; }
+    li { margin-bottom: 10px; }
+    .tip { background: #f0f0f0; padding: 10px; border-left: 4px solid #007bff; }
+    code { background: #eee; padding: 2px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Simple Tutorial: Using Lichess to Load PGN, Add/Remove Arrows, and Integrate with Recording/Audiate</h1>
+  <p>This guide focuses on using Lichess.org's free analysis tools to simplify your chess video creation. Lichess has built-in PGN import, move navigation, and easy arrow drawing—making it way simpler than adding arrows in Camtasia. We'll cover loading a PGN, stepping through moves, adding/removing arrows, and a workflow for pausing your screen recording to create AI audio in Audiate, then resuming to play it back. This keeps things streamlined for tutorials or game reviews.</p>
+  
+  <p><strong>Why Lichess?</strong> It's free, no software install needed, and arrows are native (no post-editing required). Pair it with your TechSmith bundle for recording (Camtasia/SnagIt) and AI voice (Audiate).</p>
+  
+  <h2>Step 1: Prepare Your PGN and Lichess Setup</h2>
+  <ol>
+    <li>Export your PGN from Hiarcs Chess Explorer Pro (File > Save as PGN) or copy from chess.com (Game > Share > PGN tab).</li>
+    <li>Go to <a href="https://lichess.org/analysis" target="_blank">lichess.org/analysis</a> (or <a href="https://lichess.org/paste" target="_blank">lichess.org/paste</a> for direct import).</li>
+    <li>Import the PGN:
+      <ul>
+        <li>Click the "FEN/PGN" button (under the board, looks like a clipboard icon).</li>
+        <li>Paste your PGN text into the box.</li>
+        <li>Click "Import" or press Enter—the board loads the game.</li>
+      </ul>
+    </li>
+    <li>Optional: For reusable tutorials, create a Study (Tools > Study > New Study), then import the PGN there for chapters/arrows that save.</li>
+    <li><span class="tip">Tip: Customize board (gear icon): Flip orientation, change piece style, enable coordinates for clarity in videos.</span></li>
+  </ol>
+  
+  <h2>Step 2: Play Through the PGN Step by Step</h2>
+  <ol>
+    <li>Once loaded, the board shows the starting position.</li>
+    <li>Use navigation controls (below the board):
+      <ul>
+        <li>« to start, < to previous move, > to next move, » to end.</li>
+        <li>Keyboard: Left/Right arrows for prev/next.</li>
+        <li>Click moves in the list (right panel) to jump to positions.</li>
+      </ul>
+    </li>
+    <li>Step slowly for recording: Advance one move, explain (via audio), then next.</li>
+    <li><span class="tip">Tip: Enable engine analysis (cloud icon) for eval bars/stockfish lines if reviewing—adds value to tutorials.</span></li>
+  </ol>
+  
+  <h2>Step 3: Add and Remove Arrows</h2>
+  <p>Lichess arrows are easy and appear live on the board—perfect for recording without extra editing.</p>
+  <ol>
+    <li>To add an arrow:
+      <ul>
+        <li>Right-click and hold on the starting square, drag to the ending square, release.</li>
+        <li>Default: Green arrow (for plans/attacks).</li>
+        <li>For colors: Hold modifiers while dragging—Alt for green, Shift+Alt for yellow, Ctrl+Alt for red, Alt+Ctrl+Shift for blue.</li>
+        <li>To highlight squares: Right-click on a square (no drag) for green circle; use modifiers for colors.</li>
+      </ul>
+    </li>
+    <li>To remove:
+      <ul>
+        <li>Draw the exact same arrow again (it toggles off).</li>
+        <li>Or right-click on an empty square (clears all arrows/circles).</li>
+        <li>For specific removal: No direct way, but redraw to toggle or clear all and re-add needed ones.</li>
+      </ul>
+    </li>
+    <li>In Studies: Arrows save per position/chapter—great for prepared tutorials.</li>
+    <li><span class="tip">Tip: Practice in a test game. Arrows don't persist after refresh unless in a Study. Use for emphasis like "Black attacks here" with a red arrow.</span></li>
+  </ol>
+  
+  <h2>Step 4: Recording Workflow with Pausing for Audiate Audio</h2>
+  <p>Use Camtasia (or SnagIt for quick tests) to record your Lichess screen. Pause to create/play AI audio seamlessly.</p>
+  <ol>
+    <li>Open Camtasia > New Recording > Select Lichess browser window > Enable System Audio (captures played MP3s).</li>
+    <li>Start recording > Step to a key position in Lichess > Add arrows as needed.</li>
+    <li>Pause recording (Camtasia pause button or hotkey).</li>
+    <li>Create audio in Audiate:
+      <ul>
+        <li>Open Audiate > Type script (e.g., "In this position, Black's arrow shows the f5 break...").</li>
+        <li>Generate AI voice > Edit transcript > Export as MP3.</li>
+      </ul>
+    </li>
+    <li>Unpause recording > Play the MP3 (in VLC or media player)—system audio records it while you continue stepping moves/removing arrows.</li>
+    <li>Repeat for each segment: Pause for new audio, unpause and play while advancing.</li>
+    <li>Stop recording > Edit in Camtasia: Trim pauses, add effects if needed (e.g., zoom on board).</li>
+    <li><span class="tip">Tip: For sync, play MP3 slightly after unpausing. If pauses are messy, record silent video first, then overlay Audiate audio in editor. No mic needed—AI handles narration!</span></li>
+  </ol>
+  
+  <h2>Step 5: Export and Upload</h2>
+  <ol>
+    <li>In Camtasia: Share > YouTube preset (1080p MP4).</li>
+    <li>Test playback: Arrows visible, audio clear, no copyright issues (Lichess is free-use).</li>
+    <li>Upload to YouTube with title/description/tags.</li>
+  </ol>
+  
+  <h2>Additional Tips</h2>
+  <ul>
+    <li><strong>Mobile:</strong> Lichess app supports arrows (hold one finger on empty square, drag with another).</li>
+    <li><strong>Advanced:</strong> Use Lichess Studies for branching variations, comments, and shareable links.</li>
+    <li><strong>Troubleshooting:</strong> If PGN won't load, check format (standard notation). For more help, search Lichess forums or watch YouTube tutorials (e.g., "Lichess import PGN").</li>
+    <li><strong>Why Simpler Than Camtasia Arrows:</strong> Native arrows look clean, no post-edit alignment needed.</li>
+  </ul>
+  
+  <p>This workflow minimizes your Camtasia struggles—Lichess handles visuals, Audiate does voice. Start with a short test video. If you need tweaks, let me know!</p>
+</body>
+</html>

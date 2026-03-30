@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install Rust on Windows (GNU Toolchain - No Visual Studio Required)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #de6e1f; /* Rust orange */
+        }
+        pre {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        ol {
+            padding-left: 30px;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<h1>How to Install Rust on Windows Using the GNU Toolchain<br><small>(No Visual Studio / MSVC Required)</small></h1>
+
+<p>This guide shows you how to install Rust <strong>from scratch</strong> on Windows using the <code>x86_64-pc-windows-gnu</code> toolchain. This avoids the large Visual Studio Build Tools download and the common "link.exe not found" error.</p>
+
+<p>Perfect for console apps, web backends (Axum, Rocket, etc.), and even simple native Windows GUI apps using Win32 API bindings.</p>
+
+<h2>Step 1: Clean Up Any Old Installation (Optional but Recommended)</h2>
+<ol>
+    <li>Open <strong>Settings → Apps → Installed apps</strong>.</li>
+    <li>Uninstall anything named:
+        <ul>
+            <li>Rust or Rustup</li>
+            <li>Visual Studio</li>
+            <li>Microsoft C++ Build Tools</li>
+        </ul>
+    </li>
+    <li>(Optional) Delete leftover folders:
+        <ul>
+            <li><code>C:\Users\YourUsername\.rustup</code></li>
+            <li><code>C:\Users\YourUsername\.cargo</code></li>
+        </ul>
+        <em>(Enable "View hidden items" in File Explorer to see them.)</em>
+    </li>
+</ol>
+
+<h2>Step 2: Download and Run the Rust Installer</h2>
+<ol>
+    <li>Go to the official Rust website: <a href="https://www.rust-lang.org/tools/install" target="_blank">https://www.rust-lang.org/tools/install</a></li>
+    <li>Download <strong>rustup-init.exe</strong> (64-bit version).</li>
+    <li>Double-click <code>rustup-init.exe</code> to run it.</li>
+</ol>
+
+<h2>Step 3: Choose the GNU Toolchain During Installation</h2>
+<p>When the console window opens:</p>
+<pre>
+1) Proceed with installation (default)
+2) Customize installation
+3) Cancel installation
+
+> <strong>Type 2 and press Enter</strong>
+</pre>
+
+<p>Then set these options:</p>
+<ul>
+    <li><strong>Default host triple</strong>: <code>x86_64-pc-windows-gnu</code><br>
+        (This is the key change – it uses MinGW instead of MSVC)</li>
+    <li><strong>Default toolchain</strong>: <code>stable</code> (recommended)</li>
+    <li>Leave everything else as default.</li>
+</ul>
+
+<p>Press Enter or type <code>1</code> to continue the installation.</p>
+
+<div class="note">
+    <strong>Note:</strong> Rustup will now download the GNU/MinGW-based toolchain (~300-800 MB). No Visual Studio or link.exe needed!
+</div>
+
+<h2>Step 4: Verify the Installation</h2>
+<ol>
+    <li>Open a <strong>new</strong> Command Prompt or PowerShell.</li>
+    <li>Run these commands:
+<pre>
+rustc --version
+cargo --version
+rustup show
+</pre>
+    </li>
+    <li>You should see:
+<pre>
+Default host triple: x86_64-pc-windows-gnu
+stable-x86_64-pc-windows-gnu (default)
+</pre>
+    </li>
+    <li>Test with a new project:
+<pre>
+cargo new hello_rust
+cd hello_rust
+cargo run
+</pre>
+        It should print "Hello, world!" with no errors.
+    </li>
+</ol>
+
+<h2>You're Done!</h2>
+<p>You now have a clean Rust setup that:</p>
+<ul>
+    <li>Never requires Visual Studio or MSVC</li>
+    <li>Works great for console, web, and simple GUI apps</li>
+    <li>Avoids the infamous "link.exe not found" error forever</li>
+</ul>
+
+<p>If you ever need the MSVC toolchain later, you can add it with:</p>
+<pre>rustup toolchain install stable-x86_64-pc-windows-msvc</pre>
+
+<footer>
+    Guide created January 2026 — Enjoy Rust on Windows without the hassle!
+</footer>
+
+</body>
+</html>

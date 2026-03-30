@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIARCS Chess Explorer Guide: King's Indian Defense & Full Overview</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-line-height: 1.6; margin: 20px; max-width: 900px; }
+        h1 { color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
+        h2, h3 { color: #4CAF50; }
+        ul { list-style-type: disc; margin-left: 20px; }
+        ol { margin-left: 20px; }
+        li { margin-bottom: 8px; }
+        strong { color: #333; }
+        code { background: #f4f4f4; padding: 2px 4px; border-radius: 3px; font-family: monospace; }
+        .section { margin-bottom: 30px; }
+        .tip { background: #e8f5e8; padding: 15px; border-left: 4px solid #4CAF50; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <h1>HIARCS Chess Explorer: Learning the King's Indian Defense</h1>
+    <p>Yes, HIARCS Chess Explorer (the main software featuring the HIARCS engine) can absolutely help you learn and practice the King's Indian Defense (or any other opening) through its built-in opening preparation and training tools. It's designed for players of all levels to study openings using chess databases, analysis, and interactive features—without needing specific pre-built tutorials for individual openings like the King's Indian. Instead, it lets you dive into it hands-on. Here's how it works based on its features:</p>
+
+    <div class="section">
+        <h2>Key Ways HIARCS Helps with Openings Like the King's Indian</h2>
+        <ul>
+            <li><strong>Opening Explorer and Statistics</strong>: You can load a database (e.g., the included "TopGames" database with high-level games) and filter for King's Indian games—such as by ECO code (E60-E99 for King's Indian variations) or specific players known for it (e.g., searching for "Kasparov-" or "Nakamura-" as Black). The Opening Explorer pane then shows possible moves from the current position, along with stats like win percentages, draw rates, and how often moves are played in filtered games. This helps you understand key ideas, common responses, and performance data for lines like the Classical Variation (e.g., after 1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5).</li>
+            <li><strong>Interactive Variation Exploration</strong>: Start a new game board and manually play through King's Indian lines. As you input moves, the software suggests continuations from multiple sources:
+                <ul>
+                    <li>Local opening book (based on grandmaster games).</li>
+                    <li>Online GM+ book (deeper, cloud-based recommendations for popular moves).</li>
+                    <li>HIARCS Tournament book (subscriber-only, with engine-evaluated lines).</li>
+                </ul>
+                For example, in a King's Indian setup, it might highlight aggressive pawn breaks like ...f5 or knight maneuvers, showing divergences and why certain moves score better.
+            </li>
+            <li><strong>Game Filtering and Analysis</strong>: Use the "Show games" feature to instantly pull up real games that reached your current board position (e.g., a middlegame after the King's Indian's typical kingside attack setup). You can lock this to auto-update as you explore, making it easy to study transitions from opening to middlegame. Analyze with the HIARCS engine to spot improvements, blunders, or tactical ideas—great for practicing against common White setups like the Sämisch or Averbakh variations.</li>
+            <li><strong>Training Modes</strong>: It includes a "Guess the Move" feature where you can train by predicting moves in annotated games, which is perfect for reinforcing King's Indian themes like dynamic counterplay or pawn storms. You can also set up practice positions from King's Indian games and play against the engine at adjustable strengths to test your understanding.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Loading the Mastergames Database</h2>
+        <p>Yes! The <code>mastergames.pgn</code> file you downloaded is a massive PGN database (over 250,000 master-level games), perfect for deep opening study like the King's Indian—it's one of HIARCS's optional packaged databases. You don't need to "import" it into anything; HIARCS treats PGN files directly as databases. Just <strong>open it</strong> to load and use it. Here's how:</p>
+
+        <div class="tip">
+            <h3>Quickest Way: Double-Click to Open</h3>
+            <ol>
+                <li>Locate <code>mastergames.pgn</code> (likely in your Downloads folder or wherever the installer saved it—check <code>HIARCS Chess\Databases</code> if prompted during download).</li>
+                <li>Double-click the file in File Explorer (Windows) or Finder (Mac). HIARCS will launch automatically with the database loaded in a new tab (it's set as the default PGN app on install).</li>
+            </ol>
+        </div>
+
+        <h3>Alternative: Open from Inside HIARCS</h3>
+        <ol>
+            <li>Launch HIARCS Chess Explorer.</li>
+            <li>Go to <strong>File > Open...</strong> (or click the open database icon—looks like a folder).</li>
+            <li>Navigate to <code>mastergames.pgn</code>, select it, and click <strong>Open</strong> (or double-click it).</li>
+            <li>It opens as a new <strong>database tab</strong> (you can have multiple open at once).</li>
+        </ol>
+
+        <h3>Tips</h3>
+        <ul>
+            <li><strong>First Load Takes Time</strong>: For huge files like this, HIARCS parses all games and builds indexes/views—it might take a few minutes (be patient, don't force-quit). Subsequent opens are faster.</li>
+            <li><strong>Auto-Opens Game Explorer</strong>: You'll see a pane listing all games; use it to browse/search (e.g., filter by ECO E90 for King's Indian Classical).</li>
+            <li><strong>Recent Files</strong>: Next time, use <strong>File > Open Recent</strong> for quick access.</li>
+            <li><strong>No Import Needed</strong>: Import (File > Import) is only for <em>adding</em> games from a PGN to an <em>existing</em> database tab—not for standalone ones like this.</li>
+        </ul>
+
+        <p>Once loaded, start a board, play King's Indian moves (1.d4 Nf6 2.c4 g6 etc.), and the <strong>Opening Explorer</strong> will pull stats/games from it automatically. If it doesn't associate PGNs with HIARCS, right-click a PGN > Open With > HIARCS. Enjoy! 🚀</p>
+    </div>
+
+    <div class="section">
+        <h2>Overview of HIARCS Chess Explorer Features</h2>
+        <p>HIARCS Chess Explorer is a complete chess toolkit for all levels—from beginners (750 Elo) to Grandmasters (3200+ Elo). It combines a powerful HIARCS 14 engine (World Chess Software Champion), intuitive GUI, and world-class database tools. Here's what it can do:</p>
+
+        <ul>
+            <li><strong>Database Management</strong>: Handle multiple PGN databases (including huge ones like Mastergames), search/filter/sort by players, openings (ECO), positions, events; packaged databases with 100k-200k+ GM games.</li>
+            <li><strong>Opening Preparation</strong>: Opening Explorer with real-time trees, stats (wins/draws), multi-source books (local, online GM book with millions of positions); build repertoires automatically.</li>
+            <li><strong>Game Analysis</strong>: Infinite analysis with HIARCS (or UCI engines), blunder checks, post-game reports, multiple lines/history, engine matches.</li>
+            <li><strong>Play Against the Engine</strong>: Custom modes with realistic handicap Elo levels; human-like play; track your rating.</li>
+            <li><strong>Training & Coaching</strong>: Integrated Coach (hints, mistake warnings, improvements); Guess-the-Move; practice positions/openings.</li>
+            <li><strong>Player Explorer</strong>: Analyze opponents' games, performances, favorite openings/repertoires.</li>
+            <li><strong>Game Editing & Notation</strong>: Full PGN support—variations, comments, symbols, diagrams, printing.</li>
+            <li><strong>Explorers</strong>: Game, Player, Openings, Analysis, Tree, Database—for seamless navigation.</li>
+            <li><strong>Hardware & Online</strong>: Connect Millennium eBoards; online endgame tablebases; cloud opening books.</li>
+            <li><strong>UI & Extras</strong>: Multi-language, high-quality graphics, videos/manual, context help; supports Mac/PC.</li>
+        </ul>
+
+        <p>Compared to Fritz (which you found clunky), HIARCS is more intuitive and user-friendly, with a cleaner interface—especially great on Mac/PC. It's not video-lesson based but excels at interactive, self-directed learning. Pricing ~$44-55 (check hiarcs.com). For guided King's Indian study, pair with free sites like Chess.com. Alternatives: ChessBase or Lichess (free).</p>
+    </div>
+</body>
+</html>

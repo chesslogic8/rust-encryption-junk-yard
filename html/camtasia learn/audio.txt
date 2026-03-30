@@ -1,0 +1,11 @@
+Options like Adobe Podcast's Enhance Speech (free online tool), LALAL.AI, or Moises.ai are better suited for splitting voice from music stems—they use machine learning trained specifically for that. You could process the audio there first, then import the cleaned voice track into Audiate or Camtasia for further edits.
+
+
+Yes, that's spot on—a "script" in this context means the written text that serves as the content for the voiceover, like the words that will be spoken in your video (e.g., narration explaining chess moves, commentary on a streamer's strategy, or even creative elements like a poem if it fits your video's theme). Audiate's AI can help generate that script for you based on prompts you provide.
+For example:
+
+You could prompt it with something simple like: "Generate a 1-minute script explaining basic chess openings for beginners."
+Or more creative: "Write a fun, rhyming poem about a dramatic chess comeback, around 200 words."
+It uses AI (similar to tools like ChatGPT) to create the text, which you can then edit in Audiate's transcript interface before converting it to speech with one of their AI voices.
+
+This saves time if you're not sure what to say or want ideas to start from. Once generated, you tweak it as needed, and Audiate handles turning it into audio that syncs with your Camtasia video. If your chess streamer recordings are silent (no voice from you), this is a great way to add engaging narration without recording yourself.

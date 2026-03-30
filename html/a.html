@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows System Backup and Restore Guide</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1, h2 { color: #333; }
+        ol { margin-left: 20px; }
+        p { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Windows System Backup and Restore Guide</h1>
+    <p>Yes, Windows includes a built-in feature called Backup and Restore (which appears as "Backup and Restore (Windows 7)" in the Control Panel, even on newer versions like Windows 11) that lets you create a full system image backup. This backs up everything on your system drive—including the OS, installed programs, settings, and files—so you can restore it to a fresh install, a new drive, or even different hardware (though hardware differences might require additional drivers post-restore).</p>
+
+    <h2>How to Create a System Image Backup</h2>
+    <ol>
+        <li>Connect an external hard drive or other storage device with enough space (it needs to hold your entire system drive).</li>
+        <li>Open the Control Panel (search for it in the Start menu or press Windows + R, type <code>control</code>, and hit Enter).</li>
+        <li>Navigate to System and Security > Backup and Restore (Windows 7).</li>
+        <li>In the left sidebar, click "Create a system image."</li>
+        <li>Select your external drive as the backup location (or another option like DVDs or a network location).</li>
+        <li>Confirm the drives to include (typically your system drive is selected by default) and start the backup process.</li>
+    </ol>
+    <p>This creates a complete snapshot you can use for restoration.</p>
+
+    <p>It's recommended to also create a recovery drive (search for "Create a recovery drive" in Windows Search) on a USB stick, which can help boot into the recovery environment if needed.</p>
+
+    <h2>How to Restore from the System Image</h2>
+    <ol>
+        <li>If your PC won't boot or you're starting from a fresh install, insert Windows installation media (a USB with Windows ISO, downloadable from Microsoft) or your recovery drive, then boot from it (you may need to change boot order in BIOS/UEFI settings).</li>
+        <li>On the setup screen, select "Repair your computer" (or it may boot directly to recovery options).</li>
+        <li>Go to Troubleshoot > Advanced options > System Image Recovery.</li>
+        <li>Windows will scan for available images; select your backup (it might prompt you to locate it manually if on an external drive).</li>
+        <li>Follow the prompts to confirm and start the restore—it will overwrite the current drive with the backed-up image.</li>
+        <li>After restoration, your PC should boot as it was when the backup was made.</li>
+    </ol>
+    <p>If your PC boots normally but you want to restore, you can access this from within Windows via Settings > Update & Security > Recovery > Advanced startup, then follow the same Troubleshoot path.</p>
+
+    <p>Note that this feature has been around since Windows 7 and is still available in Windows 11 as of 2025, though Microsoft pushes cloud-based options like Windows Backup (for files and settings to OneDrive) more prominently. For just files or partial backups, consider File History or OneDrive sync instead. If you encounter issues (e.g., with BitLocker encryption), you may need your recovery key. Always test your backup to ensure it's restorable.</p>
+</body>
+</html>

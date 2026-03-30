@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Kdenlive: A Beginner's Guide for Video Editing</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1, h2, h3 { color: #333; }
+        code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        ul { margin-left: 20px; }
+    </style>
+</head>
+<body>
+    <h1>How to Use Kdenlive: A Beginner's Guide</h1>
+    <p>This guide explains how to use Kdenlive for video editing, focusing on tasks like splitting/joining MP4 files, adding text (e.g., for chess move annotations), and exporting for YouTube. It's tailored for Pop!_OS users with NVIDIA hardware. Based on official documentation as of 2025.<grok-card data-id="35d66e" data-type="citation_card"></grok-card><grok-card data-id="bc16f7" data-type="citation_card"></grok-card><grok-card data-id="5ae9d6" data-type="citation_card"></grok-card><grok-card data-id="2491fa" data-type="citation_card"></grok-card><grok-card data-id="094c84" data-type="citation_card"></grok-card></p>
+
+    <h2>Installation on Pop!_OS</h2>
+    <p>Install via terminal: <code>sudo apt install kdenlive</code>. For NVIDIA acceleration, install <code>sudo apt install nvidia-cuda-toolkit</code>. Launch from the menu or <code>kdenlive</code>.</p>
+
+    <h2>User Interface Overview</h2>
+    <p>Kdenlive's UI includes the Menu Bar, Toolbars, Workspace panels (Project Bin, Monitors, Timeline), and Status Bar.<grok-card data-id="d74c73" data-type="citation_card"></grok-card> Default Editing workspace:</p>
+    <ul>
+        <li><strong>Project Bin</strong>: Stores clips, images, audio; add via "Add Clip or Folder".</li>
+        <li><strong>Clip Monitor</strong>: Views selected bin clips.</li>
+        <li><strong>Project Monitor</strong>: Previews timeline with effects.</li>
+        <li><strong>Timeline</strong>: Arrange clips on tracks (V1/V2 for video, audio tracks).</li>
+        <li><strong>Timeline Toolbar</strong>: Tools like Select (S), Razor (X) for cutting, Spacer (M) for moving groups.</li>
+        <li><strong>Status Bar</strong>: Shows hints, clip names, edit tools (e.g., razor for splitting).</li>
+    </ul>
+    <p>Customize workspaces via Menu > View > Workspaces. Use keyboard shortcuts for efficiency (e.g., Space to play).<grok-card data-id="85402e" data-type="citation_card"></grok-card></p>
+
+    <h2>Creating a New Project</h2>
+    <p>Create a project folder (e.g., chess-video/). Open Kdenlive, File > New, select folder. Set profile matching your clips (e.g., 1080p 30fps for MP4; auto-suggested).<grok-card data-id="b9d691" data-type="citation_card"></grok-card> Save often: File > Save.</p>
+
+    <h2>Importing Clips</h2>
+    <p>In Project Bin, click Add Clip or Folder to import MP4 videos. Drag to timeline tracks.<grok-card data-id="fdc3b8" data-type="citation_card"></grok-card><grok-card data-id="868491" data-type="citation_card"></grok-card> MP4 is fully supported; ensure profile matches for smooth editing.</p>
+
+    <h2>Basic Editing: Splitting and Joining Clips</h2>
+    <p><strong>Splitting:</strong> Select Razor Tool (X), click on clip at cut point. Or position playhead, Shift+R.<grok-card data-id="031800" data-type="citation_card"></grok-card></p>
+    <p><strong>Joining/Rearranging:</strong> Drag clips to align (snap enabled). Use Spacer Tool (M) to move groups without gaps. Insert mode shifts clips right.<grok-card data-id="a283a5" data-type="citation_card"></grok-card></p>
+    <p>Zoom timeline: Ctrl+Mousewheel. Preview in Project Monitor.</p>
+
+    <h2>Adding Text (Titles)</h2>
+    <p>Create titles for overlays like chess notations:<grok-card data-id="b1d28f" data-type="citation_card"></grok-card></p>
+    <ul>
+        <li>In Project Bin, right-click > Add Title Clip (or Alt+T).</li>
+        <li>In Titler window: Click to add text field, format (font, size, color).</li>
+        <li>Add shapes/images if needed (Alt+R for rectangle).</li>
+        <li>Position: Drag or X/Y coords; align with toolbar icons.</li>
+        <li>Animations: Apply timeline effects like Transform for fades/motion.</li>
+        <li>Save: Create Title; adds to Bin.</li>
+        <li>Drag to timeline above video track for overlay (alpha channel auto-composites).</li>
+    </ul>
+
+    <h2>Adding Effects and Transitions</h2>
+    <p>View > Effects. Search/double-click to add to selected clip (e.g., RGB Adjustment). Adjust in Effects Stack; add keyframes for changes over time.<grok-card data-id="77daab" data-type="citation_card"></grok-card> For transitions: Overlap clips, click corner > Add Composition (e.g., Wipe).</p>
+
+    <h2>Exporting (Rendering)</h2>
+    <p>Project > Render (Ctrl+Enter):<grok-card data-id="72357c" data-type="citation_card"></grok-card></p>
+    <ul>
+        <li>Select YouTube preset (MP4, H.264/AAC).</li>
+        <li>For NVIDIA: Choose NVENC H264 preset under Hardware Accelerated.</li>
+        <li>Set output file, adjust speed/quality.</li>
+        <li>Render to File.</li>
+    </ul>
+    <p>Enable parallel processing for faster renders on your hardware.</p>
+
+    <p>For more, check <a href="https://docs.kdenlive.org/en/">official docs</a>. If issues with NVIDIA, ensure drivers are updated.</p>
+</body>
+</html>
