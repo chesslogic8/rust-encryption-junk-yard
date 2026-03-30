@@ -1,0 +1,207 @@
+Create a production-grade Rust CLI application (Rust 1.94+ and edition 2024) for Linux that securely encrypts and decrypts files using authenticated encryption.
+
+PROJECT STRUCTURE:
+The project must consist of exactly these files:
+- Cargo.toml
+- rust-toolchain.toml
+- src/main.rs
+
+Cargo.toml:
+- Must include:
+  - edition = "2024"
+  - rust-version = "1.94"
+- Use only these dependencies:
+  - aes-gcm-siv
+  - chacha20poly1305
+  - hkdf
+  - sha2
+  - rand
+  - zeroize
+
+rust-toolchain.toml:
+- Must pin exact compiler version:
+  - channel = "1.94.1"
+  - profile = "minimal"
+
+CORE FUNCTIONALITY:
+- The app must support two encryption modes:
+  1) AES-256-GCM-SIV
+  2) XChaCha20-Poly1305
+- The CLI usage must be minimal:
+  - app <file> -a   (AES mode)
+  - app <file> -x   (XChaCha mode)
+- The same command toggles:
+  - If the file is already encrypted with that algorithm → decrypt
+  - Otherwise → encrypt
+
+NO CLI NOISE:
+- Do NOT include help menus, usage text, or suggestions
+- Output must be minimal:
+  - "ok" on success
+  - short error messages only:
+    - invalid argument
+    - missing key file
+    - invalid key size
+    - auth failed
+    - invalid format
+    - io error
+- Exit with non-zero on failure
+
+KEY MANAGEMENT:
+- AES uses a file named: aes.key
+- XChaCha uses a file named: x.key
+- Key files must be located in the SAME directory as the target file
+- Each key must be exactly 32 bytes
+- If missing → return "missing key file"
+- If wrong size → return "invalid key size"
+
+SECURITY DESIGN:
+- Use only well-audited RustCrypto crates:
+  - aes-gcm-siv
+  - chacha20poly1305
+  - hkdf (SHA-256)
+  - rand
+  - zeroize
+- NEVER implement crypto manually
+
+KEY DERIVATION:
+- Use HKDF-SHA256 to derive per-file encryption keys
+- Generate a random 16-byte salt per encryption
+- Derive key using:
+  - input key = contents of key file
+  - salt = per-file random salt
+  - info = "aes" or "xchacha"
+- This ensures unique keys per file
+
+NONCE REQUIREMENTS:
+- AES-GCM-SIV → 12-byte random nonce
+- XChaCha20 → 24-byte random nonce
+- Nonces must be randomly generated per encryption
+- Store nonce in file header
+
+FILE FORMAT:
+- Each algorithm must have its own header:
+
+AES format:
+- magic: "RSEA1" (5 bytes)
+- salt: 16 bytes
+- nonce: 12 bytes
+- ciphertext (includes auth tag)
+
+XChaCha format:
+- magic: "RSXC1" (5 bytes)
+- salt: 16 bytes
+- nonce: 24 bytes
+- ciphertext
+
+- The program must detect encryption by checking magic bytes
+
+CASCADE SUPPORT:
+- Do NOT implement built-in cascade
+- If a file encrypted with one algorithm is processed by the other, treat it as plaintext
+- This allows manual layering:
+  - app file -a
+  - app file -x
+
+FILE HANDLING:
+- MUST use atomic file replacement (NOT in-place modification):
+  1) read original file
+  2) write to temp file in same directory
+  3) fsync temp file
+  4) rename to original (atomic)
+
+ERROR HANDLING:
+- Authentication failure must return "auth failed"
+- Invalid or too-small file must return "invalid format"
+- No partial writes allowed
+
+MEMORY SAFETY:
+- Zero sensitive key material using zeroize after use
+
+EXTRA MODE:
+- Add a special command:
+  - app -dk
+- This generates default deterministic keys for testing:
+  - aes.key
+  - x.key
+- Keys must always be identical across runs
+- Use SHA-256 of fixed strings to generate them
+- Overwrite existing files
+- Output "ok"
+
+CONSTRAINTS:
+- No streaming required (load file into memory)
+- Keep implementation simple, readable, and secure
+- No unnecessary abstractions
+- No extra files beyond the three specified
+
+OUTPUT:
+- Provide full contents of:
+  - Cargo.toml
+  - rust-toolchain.toml
+  - src/main.rs
+- Ensure code compiles cleanly with no warnings
+- Ensure correct and safe usage of cryptographic primitives
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////
+below is an "AUDIT PROMPT"
+
+Only use below prompt when you want:
+
+validation
+security review
+second opinion
+/////////////////////////////////////////////////////////////////////////
+
+
+You are reviewing a Rust CLI encryption tool for security, correctness, and reliability.
+
+The tool:
+- Uses AES-256-GCM-SIV and XChaCha20-Poly1305
+- Uses HKDF-SHA256 with per-file salt
+- Uses random nonces per encryption
+- Stores salt + nonce in a file header
+- Uses atomic file replacement
+- Uses key files (32 bytes) instead of passwords
+- Supports manual cascade by layering encryptions
+
+Your task:
+
+1. Verify correct usage of:
+   - AEAD encryption (no misuse of APIs)
+   - nonce generation and uniqueness
+   - HKDF usage and parameters
+   - authentication handling
+
+2. Identify any:
+   - security vulnerabilities
+   - misuse of cryptographic primitives
+   - unsafe assumptions
+   - edge cases that could break correctness
+
+3. Evaluate:
+   - file format safety
+   - key handling
+   - failure modes (corruption, partial writes, wrong keys)
+
+4. DO NOT rewrite the program unless necessary.
+5. DO NOT suggest unnecessary features.
+6. Focus only on correctness, safety, and real risks.
+
+Output:
+- A concise audit report
+- Clearly labeled issues (if any)
+- Severity levels (low / medium / high)
+
+
+
+
+
+
+
+
+
