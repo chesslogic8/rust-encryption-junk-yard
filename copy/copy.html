@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✅ Most Reliable File Copying with rsync • Pop!_OS / COSMIC Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #00c853;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(180deg, #1a1a1a, #111111);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: #0f0f0f;
+            padding: 2rem 0;
+            border-bottom: 4px solid var(--primary);
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            margin: 0;
+            color: white;
+        }
+        
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--primary);
+            margin-top: 2.5rem;
+        }
+        
+        code {
+            background: #222;
+            color: #00ff9d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Space Grotesk', monospace;
+        }
+        
+        pre {
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background: rgba(0, 200, 83, 0.15);
+            border-left: 5px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: #1e1e1e;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        
+        th {
+            background: #222;
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #000;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 200, 83, 0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 Most Reliable File Copying<br>with <span style="color:#00c853">rsync</span></h1>
+            <p style="font-size:1.3rem; margin-top:10px; color:#aaa;">The gold standard for moving big files &amp; folders on Linux (especially Pop!_OS + COSMIC)</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Why rsync is the most reliable way to copy files</h2>
+        <p>Unlike the COSMIC file manager (which can throw “Directory not empty” errors on cross-drive copies) or even basic <code>cp</code>, <strong>rsync</strong> is designed for rock-solid, resumable, verifiable transfers — perfect for 11 GB files, external drives, or entire folders.</p>
+        
+        <div class="highlight">
+            ✅ Preserves permissions, timestamps, and symlinks<br>
+            ✅ Shows real-time progress<br>
+            ✅ Can resume if interrupted<br>
+            ✅ Skips already-copied data<br>
+            ✅ Can verify every byte with checksums (paranoid mode)
+        </div>
+
+        <h2>The Most Reliable Command (Recommended)</h2>
+        <pre><code>rsync -ah --progress --partial "/path/to/source/file-or-folder" "/path/to/destination/"</code></pre>
+        
+        <table>
+            <tr><th>Flag</th><th>What it does</th></tr>
+            <tr><td><code>-a</code></td><td>Archive mode (preserves everything important)</td></tr>
+            <tr><td><code>-h</code></td><td>Human-readable sizes (MB/GB)</td></tr>
+            <tr><td><code>--progress</code></td><td>Real-time percentage bar</td></tr>
+            <tr><td><code>--partial</code></td><td>Keeps partial files so you can resume</td></tr>
+        </table>
+
+        <h2>1. Copying a Single File</h2>
+        <pre><code># Example: Copy a big 11 GB ISO to an external drive
+rsync -ah --progress --partial "/home/mark/Downloads/Ubuntu.iso" "/run/media/mark/PortableDrive/"</code></pre>
+
+        <h2>2. Copying an Entire Directory</h2>
+        <p><strong>Important:</strong> Add a trailing <code>/</code> on the source folder to copy <em>its contents</em>, not the folder itself.</p>
+        <pre><code># Copy the entire folder "MyProject" and its contents
+rsync -ah --progress --partial "/home/mark/MyProject/" "/run/media/mark/BackupDrive/MyProject/"</code></pre>
+
+        <h2>3. Paranoid Mode: Verify Every Byte with Checksum</h2>
+        <p>Use this when you want to be 100% sure the copy is bit-for-bit identical (slightly slower because it reads every file twice).</p>
+        <pre><code># Most reliable checksum-verified copy
+rsync -ah --checksum --progress --partial "/path/to/source/" "/path/to/destination/"</code></pre>
+        
+        <p style="margin-top:1.5rem"><strong>After the copy finishes, you can double-check manually:</strong></p>
+        <pre><code># Quick checksum verification of a single file
+sha256sum "/path/to/source/file" "/path/to/destination/file"
+
+# Or for an entire folder (generates a report)
+cd /path/to/source && find . -type f -exec sha256sum {} + > source-checksums.txt
+cd /path/to/destination && find . -type f -exec sha256sum {} + > dest-checksums.txt
+diff source-checksums.txt ../source-checksums.txt</code></pre>
+
+        <h2>Bonus: Make it even easier</h2>
+        <p>Add this alias to your terminal so you never have to remember the flags:</p>
+        <pre><code># Add to ~/.bashrc or ~/.zshrc
+alias copybig='rsync -ah --progress --partial'
+alias copyparanoid='rsync -ah --checksum --progress --partial'</code></pre>
+        <p>Then just type: <code>copybig "/source/" "/dest/"</code></p>
+
+        <a href="#" onclick="copyToClipboard()" class="btn">📋 Copy All Commands to Clipboard</a>
+        
+        <h2>Quick Tips for Pop!_OS Users</h2>
+        <ul>
+            <li>Works perfectly across internal SSD → external USB/NVMe drives</li>
+            <li>Works on NTFS/exFAT drives (just mount them first)</li>
+            <li>If interrupted, just run the exact same command again — it resumes!</li>
+            <li>rsync is already installed on Pop!_OS — no extra steps needed</li>
+        </ul>
+    </div>
+
+    <footer>
+    
+        This HTML file is completely offline and self-contained.<br>
+        Save it as <strong>rsync-reliable-copy-guide.html</strong> and open in any browser.
+    </footer>
+
+    <script>
+        function copyToClipboard() {
+            const commands = `Most Reliable rsync Commands:
+
+1. Single file:
+rsync -ah --progress --partial "/source/file" "/destination/"
+
+2. Entire directory:
+rsync -ah --progress --partial "/source/folder/" "/destination/folder/"
+
+3. Paranoid checksum mode:
+rsync -ah --checksum --progress --partial "/source/" "/destination/"
+
+Alias setup:
+alias copybig='rsync -ah --progress --partial'
+alias copyparanoid='rsync -ah --checksum --progress --partial'`;
+            
+            navigator.clipboard.writeText(commands).then(() => {
+                const btns = document.querySelectorAll('.btn');
+                btns.forEach(b => b.textContent = '✅ Copied!');
+                setTimeout(() => {
+                    btns.forEach(b => b.textContent = '📋 Copy All Commands to Clipboard');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✅ Most Reliable Byte-by-Byte Disk Cloning & Backup Guide • Pop!_OS / COSMIC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #00c853;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(180deg, #1a1a1a, #111111);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: #0f0f0f;
+            padding: 2rem 0;
+            border-bottom: 4px solid var(--primary);
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            margin: 0;
+            color: white;
+        }
+        
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--primary);
+            margin-top: 2.5rem;
+        }
+        
+        code {
+            background: #222;
+            color: #00ff9d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Space Grotesk', monospace;
+        }
+        
+        pre {
+            background: #1e1e1e;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background: rgba(0, 200, 83, 0.15);
+            border-left: 5px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .warning {
+            background: #3a0000;
+            border: 3px solid #ff3d00;
+            color: #ffdddd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: #1e1e1e;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        
+        th {
+            background: #222;
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #000;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 200, 83, 0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        ul li {
+            margin-bottom: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🛡️ Most Reliable Byte-by-Byte<br>Disk Cloning &amp; Backup</h1>
+            <p style="font-size:1.3rem; margin-top:10px; color:#aaa;">The modern Linux equivalent of Terabyte BootIt Bare Metal — safe, verifiable, and works perfectly on Pop!_OS + COSMIC</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Why byte-by-byte copying?</h2>
+        <p>Just like your old Terabyte tool, this method copies <strong>every single byte</strong> of the drive — including empty space, deleted files, partition tables, and boot sectors. Perfect for full-drive backups or cloning to another internal/portable drive.</p>
+        
+        <div class="highlight">
+            ✅ True bit-for-bit identical copy<br>
+            ✅ Works on Windows, Linux, or mixed drives<br>
+            ✅ Can verify the copy is perfect<br>
+            ✅ Handles large drives (11 GB+ is easy)<br>
+            ✅ No COSMIC file manager bugs
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ CRITICAL SAFETY WARNING</strong><br><br>
+            <strong># WARNING: Double-check your device names with `lsblk` first!</strong><br>
+            One wrong letter and you can wipe your entire main drive. Always run <code>lsblk -f</code> and confirm sizes &amp; labels before copying.
+        </div>
+
+        <h2>The Most Reliable Command: dd (Simple &amp; Rock-Solid)</h2>
+        <pre><code># WARNING: Double-check your device names with `lsblk` first!
+sudo dd if=/dev/source-disk of=/dev/dest-disk bs=4M status=progress conv=fsync</code></pre>
+        
+        <p><strong>Example for a real backup:</strong></p>
+        <pre><code>sudo dd if=/dev/nvme0n1 of=/dev/sdb bs=4M status=progress conv=fsync</code></pre>
+
+        <table>
+            <tr><th>Part</th><th>What it does</th></tr>
+            <tr><td><code>if=/dev/source-disk</code></td><td>Source drive (the one you want to copy FROM)</td></tr>
+            <tr><td><code>of=/dev/dest-disk</code></td><td>Destination drive (the one you want to copy TO)</td></tr>
+            <tr><td><code>bs=4M</code></td><td>Fast 4-megabyte block size</td></tr>
+            <tr><td><code>status=progress</code></td><td>Live progress bar</td></tr>
+            <tr><td><code>conv=fsync</code></td><td>Ensures all data is written before finishing</td></tr>
+        </table>
+
+        <h2>After the copy: Verify it's perfect</h2>
+        <pre><code># Quick byte-by-byte comparison (fastest check)
+sudo cmp -s /dev/source-disk /dev/dest-disk && echo "✅ Perfect match!" || echo "❌ Mismatch found!"</code></pre>
+
+        <p>Or use checksums for extra peace of mind (slower but 100% sure):</p>
+        <pre><code>sudo sha256sum /dev/source-disk > source.sha256
+sudo sha256sum /dev/dest-disk > dest.sha256
+diff source.sha256 dest.sha256 && echo "✅ Checksums match!"</code></pre>
+
+        <h2>Better for damaged drives: ddrescue</h2>
+        <pre><code># Install once: sudo apt install gddrescue
+sudo ddrescue -f -r3 /dev/source-disk /dev/dest-disk rescue.log</code></pre>
+        <p>ddrescue is smarter — it retries bad sectors and creates a log so you can resume later.</p>
+
+        <h2>Easiest Option: Rescuezilla (GUI, like Terabyte Bare Metal)</h2>
+        <ol>
+            <li>Download Rescuezilla ISO from <a href="https://rescuezilla.com" target="_blank">rescuezilla.com</a></li>
+            <li>Flash it to a thumb drive with Balena Etcher or <code>dd</code></li>
+            <li>Boot from the thumb drive (press F12 or Esc during boot)</li>
+            <li>Choose “Clone” or “Image” → select source &amp; destination drives</li>
+            <li>It does byte-by-byte copy + built-in verification</li>
+        </ol>
+        <p>Rescuezilla has nice safety dialogs and is exactly what most people use instead of the old Terabyte tool in 2026.</p>
+
+        <h2>Quick Tips for Pop!_OS Users</h2>
+        <ul>
+            <li>Always run <code>lsblk -f</code> first — it shows names, sizes, and filesystem labels</li>
+            <li>Unmount drives before cloning: <code>sudo umount /dev/sdb1</code> (replace with actual partitions)</li>
+            <li>For BitLocker/Windows drives: suspend BitLocker in Windows first</li>
+            <li>External drives work great — just make sure the destination is at least as big as the source</li>
+            <li>These commands work in the Pop!_OS terminal — no extra installs needed for dd</li>
+        </ul>
+
+        <a href="#" onclick="copyToClipboard()" class="btn">📋 Copy All Commands to Clipboard</a>
+    </div>
+
+    <footer>
+      
+        This HTML file is completely offline and self-contained.<br>
+        Save it as <strong>disk-clone-byte-by-byte-guide.html</strong> and open in any browser.
+    </footer>
+
+    <script>
+        function copyToClipboard() {
+            const commands = `Most Reliable Byte-by-Byte Disk Cloning Commands:
+
+# WARNING: Double-check your device names with \`lsblk\` first!
+sudo dd if=/dev/source-disk of=/dev/dest-disk bs=4M status=progress conv=fsync
+
+# Verify copy
+sudo cmp -s /dev/source-disk /dev/dest-disk && echo "✅ Perfect match!"
+
+# Or checksum verify
+sudo sha256sum /dev/source-disk > source.sha256
+sudo sha256sum /dev/dest-disk > dest.sha256
+diff source.sha256 dest.sha256
+
+# ddrescue (for damaged drives)
+sudo ddrescue -f -r3 /dev/source-disk /dev/dest-disk rescue.log`;
+            
+            navigator.clipboard.writeText(commands).then(() => {
+                const btns = document.querySelectorAll('.btn');
+                btns.forEach(b => b.textContent = '✅ Copied!');
+                setTimeout(() => {
+                    btns.forEach(b => b.textContent = '📋 Copy All Commands to Clipboard');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
