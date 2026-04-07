@@ -1,1 +1,1 @@
-By design, all of the code in here works and is incredibly easy to feed to ai in order to change or audit. Use it for starter apps, spare parts, or complete apps. Just make sure you have ai audit anything you use. 
+By design, all of the code in here works and is incredibly easy to feed to ai in order to change or audit. Use it for learning, starter apps, spare parts, or complete apps. Just make sure you have ai audit anything you use. 
